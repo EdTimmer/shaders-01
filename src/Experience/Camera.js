@@ -37,8 +37,8 @@ export default class Camera {
     if (this.controls) {
       this.controls.update();
     }
-    if (this.target) {
-      this.instance.lookAt(this.target.position);
-    }
+    // if (this.target) {
+    //   this.instance.lookAt(this.target.position);
+    // }
   }
 }

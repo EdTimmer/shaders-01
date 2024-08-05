@@ -2,6 +2,7 @@ import * as THREE from "three"
 import Experience from "../Experience"
 import Environment from "./Environment"
 import SurfaceOne from "./SurfaceOne"
+import SurfaceTwo from "./SurfaceTwo"
 
 export default class World {
   constructor() {
@@ -10,6 +11,9 @@ export default class World {
     this.camera = this.experience.camera
     this.resources = this.experience.resources
     this.debug = this.experience.debug
+    this.axisHelper = new THREE.AxesHelper(100)
+
+    this.scene.add(this.axisHelper)
 
     // Debug
     if (this.debug.active) {
@@ -20,6 +24,7 @@ export default class World {
     this.resources.on('ready', () => {
       // Setup
       this.surfaceOne = new SurfaceOne();
+      this.surfaceTwo = new SurfaceTwo();
 
       this.environment = new Environment()
            
@@ -34,6 +39,9 @@ export default class World {
     }
     if (this.surfaceOne) { 
       this.surfaceOne.update()
+    }
+    if (this.surfaceTwo) {
+      this.surfaceTwo.update()
     }
   }
 }
