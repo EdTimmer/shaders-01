@@ -23,6 +23,9 @@ export default class SurfaceFour {
       fragmentShader: fourFragmentShader,
       transparent: true,
       side: THREE.DoubleSide,
+      uniforms: {
+        u_Time: { value: 0.0 },
+      }
     })
   }
 
@@ -30,13 +33,13 @@ export default class SurfaceFour {
     this.geometry = new THREE.PlaneGeometry(50, 50, 32, 32);
 
     const count = this.geometry.attributes.position.count;
-    const randoms = new Float32Array(count);
+    this.randoms = new Float32Array(count);
 
     for (let i = 0; i < count; i++) {
-      randoms[i] = Math.random();
+      this.randoms[i] = Math.random();
     }
 
-    this.geometry.setAttribute('a_Random', new THREE.BufferAttribute(randoms, 1));
+    this.geometry.setAttribute('a_Random', new THREE.BufferAttribute(this.randoms, 1));
   }
 
   setMesh() {
@@ -48,6 +51,14 @@ export default class SurfaceFour {
     this.scene.add(this.mesh);
   } 
 
-  update() {    
+  update() {
+    const elapsedTime = this.experience.time.getElapsedTime().toFixed(2);
+    this.material.uniforms.u_Time.value = this.experience.time.getElapsedTime().toFixed(2);
+    
+    for (let i = 0; i < this.randoms.length; i++) {
+      this.randoms[i] -= Math.sin(this.randoms[i] * elapsedTime * 0.5) * 0.01;
+    }
+    this.geometry.attributes.a_Random.needsUpdate = true;
+
   }
 }

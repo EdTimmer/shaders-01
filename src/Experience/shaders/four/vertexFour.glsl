@@ -1,6 +1,7 @@
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
+uniform float u_Time;
 
 attribute vec3 position;
 attribute float a_Random;
