@@ -56,7 +56,7 @@ export default class SurfaceFour {
     this.material.uniforms.u_Time.value = this.experience.time.getElapsedTime().toFixed(2);
     
     for (let i = 0; i < this.randoms.length; i++) {
-      this.randoms[i] -= Math.sin(this.randoms[i] * elapsedTime * 0.5) * 0.01;
+      this.randoms[i] -= Math.sin(this.randoms[i] * elapsedTime * 0.5) * 0.007;
     }
     this.geometry.attributes.a_Random.needsUpdate = true;
 
