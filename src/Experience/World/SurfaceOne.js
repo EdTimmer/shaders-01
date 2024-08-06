@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
-import oneVertexShader from '../shaders/one/vertex.glsl'
-import oneFragmentShader from '../shaders/one/fragment.glsl'
+import oneVertexShader from '../shaders/one/vertexOne.glsl'
+import oneFragmentShader from '../shaders/one/fragmentOne.glsl'
 
 export default class SurfaceOne {
   constructor() {
@@ -36,7 +36,7 @@ export default class SurfaceOne {
 
   setMesh() {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.mesh.position.set(-30, 30, 0);
+    this.mesh.position.set(-60, 30, 0);
 
     this.meshPosition = this.mesh.position;
     this.meshQuaternion = this.mesh.quaternion;

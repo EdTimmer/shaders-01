@@ -3,6 +3,8 @@ import Experience from "../Experience"
 import Environment from "./Environment"
 import SurfaceOne from "./SurfaceOne"
 import SurfaceTwo from "./SurfaceTwo"
+import SurfaceThree from "./SurfaceThree"
+import SurfaceFour from "./SurfaceFour"
 
 export default class World {
   constructor() {
@@ -25,6 +27,8 @@ export default class World {
       // Setup
       this.surfaceOne = new SurfaceOne();
       this.surfaceTwo = new SurfaceTwo();
+      this.surfaceThree = new SurfaceThree();
+      this.surfaceFour = new SurfaceFour();
 
       this.environment = new Environment()
            
@@ -42,6 +46,12 @@ export default class World {
     }
     if (this.surfaceTwo) {
       this.surfaceTwo.update()
+    }
+    if (this.surfaceThree) {
+      this.surfaceThree.update()
+    }
+    if (this.surfaceFour) {
+      this.surfaceFour.update()
     }
   }
 }
