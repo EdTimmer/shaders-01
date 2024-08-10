@@ -19,24 +19,25 @@ vec3 palette(float t) {
 
 void main() {
 
-    // vec2 uv0 = vUv;
     vec2 uv1 = vUv;
     vec2 uv0 = vUv0;
-    // vUv = vUv - 0.5;
-    // vUv *= 2.0;
-    // uv1 *= 4.0;
-    uv1 = fract(uv1 * 4.0) - 0.5;
+
+    
     uv0 = fract(uv0 * 2.0) - 0.5;
 
+    vec3 finalColor = vec3(0.0);
 
-    float d = length(uv1);
-    vec3 col = palette(length(uv0) + u_Time * 0.0005);
+    for (float i = 0.0; i < 4.0; i++) {
+        uv1 = fract(uv1 * 2.0) - 0.5;
+        float d = length(uv1) * exp(-length(uv0));
+        vec3 col = palette(length(uv0) + (i * 0.4) + u_Time * 0.00005);
 
-    d = sin(d * 8.0 + (u_Time * 0.001)) / 8.0;
-    d = abs(d);
-    d = 0.02 / d;
+        d = sin(d * 8.0 + (u_Time * 0.001)) / 8.0;
+        d = abs(d);
+        d = pow(0.01 / d, 1.2);
 
-    col *= d;
-    
-    gl_FragColor = vec4(col, 1.0);
+        finalColor += col * d;
+    }
+
+    gl_FragColor = vec4(finalColor, 1.0);
 }
