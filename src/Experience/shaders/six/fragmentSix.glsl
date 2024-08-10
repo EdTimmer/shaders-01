@@ -23,7 +23,7 @@ void main() {
     vec2 uv0 = vUv0;
 
     
-    uv0 = fract(uv0 * 2.0) - 0.5;
+    uv0 = fract(uv0 * 1.0) - 0.5;
 
     vec3 finalColor = vec3(0.0);
 
