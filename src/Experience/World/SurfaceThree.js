@@ -12,6 +12,9 @@ export default class SurfaceThree {
     this.raycaster = new THREE.Raycaster();
     this.debug = this.experience.debug
 
+    this.textureLoader = new THREE.TextureLoader();
+    this.flagTexture = this.textureLoader.load('/textures/ava2.jpg');
+
     // Debug
     if (this.debug.active) {
       this.debugFolder = this.debug.ui.addFolder('frequency')
@@ -24,23 +27,24 @@ export default class SurfaceThree {
   }
 
   setMaterial() {
-    this.material = new THREE.RawShaderMaterial({
-      vertexShader: threeVertexShader,
-      fragmentShader: threeFragmentShader,
-      transparent: true,
-      side: THREE.DoubleSide,
-      uniforms: {
-        u_Frequency: { value: new THREE.Vector2(10, 5) },
-        u_Time: { value: 0.0 },
-      }
-    })
+    if (this.flagTexture) {
+      this.material = new THREE.RawShaderMaterial({
+        vertexShader: threeVertexShader,
+        fragmentShader: threeFragmentShader,
+        transparent: true,
+        side: THREE.DoubleSide,
+        uniforms: {
+          u_Frequency: { value: new THREE.Vector2(0.1, 0.05) },
+          u_Time: { value: 0.0 },
+          u_Texture: { value: this.flagTexture }
+        }
+      });
+    }
     // Debug
     if (this.debug.active) {
       this.debugFolder.add(this.material.uniforms.u_Frequency.value, 'x').name('frequencyX').step(0.1).min(0).max(20)
       this.debugFolder.add(this.material.uniforms.u_Frequency.value, 'y').name('frequencyY').step(0.1).min(0).max(20)
     }
-
-        
   }
 
   setGeometry() {
