@@ -15,9 +15,9 @@ export default class World {
     this.camera = this.experience.camera
     this.resources = this.experience.resources
     this.debug = this.experience.debug
-    this.axisHelper = new THREE.AxesHelper(100)
+    // this.axisHelper = new THREE.AxesHelper(100)
 
-    this.scene.add(this.axisHelper)
+    // this.scene.add(this.axisHelper)
 
     // Debug
     if (this.debug.active) {

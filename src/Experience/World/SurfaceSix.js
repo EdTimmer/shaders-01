@@ -31,7 +31,10 @@ export default class SurfaceSix {
   }
 
   setGeometry() {
-    this.geometry = new THREE.PlaneGeometry(50, 50, 32, 32);
+    // this.geometry = new THREE.PlaneGeometry(50, 50, 32, 32);
+    // this.geometry = new THREE.SphereGeometry(26, 32, 32);
+    this.geometry = new THREE.BoxGeometry(50, 50, 50, 32, 32, 32);
+    // this.geometry = new THREE.TorusGeometry(26, 10, 16, 100);
   }
 
   setMesh() {

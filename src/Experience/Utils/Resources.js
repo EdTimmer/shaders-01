@@ -28,7 +28,7 @@ export default class Resources extends EventEmitter {
     this.loaders.gltfLoader = new GLTFLoader()
     this.loaders.textureLoader = new THREE.TextureLoader()
     this.loaders.RGBELoader = new RGBELoader()
-    this.loaders.audioLoader = new THREE.AudioLoader()
+    // this.loaders.audioLoader = new THREE.AudioLoader()
     // add draco loader if needed    
   }
 
@@ -40,9 +40,10 @@ export default class Resources extends EventEmitter {
     for (const source of this.sources) {
       if (source.type === 'background') {
         this.loadHDRBackground(source.path)
-      } else if (source.type === 'audio') {
-        this.loadAudio(source.path, source.name)
-      }
+      } 
+      // else if (source.type === 'audio') {
+      //   this.loadAudio(source.path, source.name)
+      // }
     }
   }
 
@@ -57,14 +58,14 @@ export default class Resources extends EventEmitter {
     );
   }
 
-  loadAudio(path, name) {
-    this.loaders.audioLoader.load(
-      path,
-      (buffer) => {
-        this.sourceLoaded({ name: name, type: 'audio' }, buffer);
-      }
-    );
-  }
+  // loadAudio(path, name) {
+  //   this.loaders.audioLoader.load(
+  //     path,
+  //     (buffer) => {
+  //       this.sourceLoaded({ name: name, type: 'audio' }, buffer);
+  //     }
+  //   );
+  // }
 
   sourceLoaded(source, file) {
     this.items[source.name] = file
